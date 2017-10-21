@@ -51,7 +51,7 @@ We need at least 16 GB of memory
 3. Build the image
 
 ```bash
-docker build -t robolamp/KGPUComputeDocker:gpu -f Dockerfile.gpu .
+docker build -t robolamp/k-gpu-compute-docker:gpu -f Dockerfile.gpu .
 ```	 
 
 ### Running the Docker image
@@ -61,7 +61,7 @@ Don't forget to prepare a directory to share with container using [Docker volume
 You can run container with an access to container's bash:
 
 ```bash
-nvidia-docker run -it -p 4444:8888 -p 3003:6006 -v /sharedfolder:/root/sharedfolder robolamp/KGPUComputeDocker:gpu bash
+nvidia-docker run -it -p 4444:8888 -p 3003:6006 -v /sharedfolder:/root/sharedfolder robolamp/k-gpu-compute-docker:gpu bash
 ```
 
 Alternatively, you can run jupiter notebook in container.
