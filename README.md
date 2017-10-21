@@ -32,8 +32,12 @@ TODO:
 You can download the Docker image from [Docker Hub](https://hub.docker.com), or build an image locally.
 
 #### Download the Docker image from Docker Hub
-TODO
 
+You can pull an image from [Docker Hub repository](https://hub.docker.com/r/robolamp/k-gpu-compute-docker/).
+
+```bash
+docker pull robolamp/k-gpu-compute-docker
+```
 
 #### Build the Docker image locally
 
