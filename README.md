@@ -32,7 +32,7 @@ TODO:
 #### 1. Download the Docker image from Docker Hub
 TODO
 
-#### 2. Build the Docker image on your locally
+#### 2. Build the Docker image locally
 
 1. Clone this repository 
 
