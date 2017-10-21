@@ -41,7 +41,7 @@ TODO
 
 ```bash
 git clone https://github.com/robolamp/KGPUComputeDocker.git
-cd dl-docker
+cd KGPUComputeDocker
 ```	 
 
 2. Check Docker's Base Device Size parameter using [this guide](https://www.projectatomic.io/blog/2016/03/daemon_option_basedevicesize/)
