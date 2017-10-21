@@ -29,10 +29,13 @@ TODO:
 
 ### Obtaining the Docker image
 
-#### 1. Download the Docker image from Docker Hub
+You can download the Docker image from [Docker Hub](https://hub.docker.com), or build an image locally.
+
+#### Download the Docker image from Docker Hub
 TODO
 
-#### 2. Build the Docker image locally
+
+#### Build the Docker image locally
 
 1. Clone this repository 
 
@@ -55,7 +58,32 @@ docker build -t robolamp/KGPUComputeDocker:gpu -f Dockerfile.gpu .
 
 Don't forget to prepare a directory to share with container using [Docker volumes](https://docs.docker.com/engine/admin/volumes/volumes/)
 
+You can run container with an access to container's bash:
+
 ```bash
 nvidia-docker run -it -p 4444:8888 -p 3003:6006 -v /sharedfolder:/root/sharedfolder robolamp/KGPUComputeDocker:gpu bash
 ```
 
+Alternatively, you can run jupiter notebook in container.
+
+1. Prepare the password for your jupiter notebook
+
+Run python in your terminal:
+```bash
+python
+```
+Encrypt your password using notebook.auth.security.passwd():
+
+```python
+>>> from notebook.auth import passwd
+>>> passwd()
+Enter password: 
+Verify password: 
+```
+2. Launch container with notebook
+
+Copy your password hash and insert in into the following command and run it:
+
+```bash
+nvidia-docker run -d -p 4444:8888 -p 3003:6006 -v /sharedfolder:/root/sharedfolder robolamp/KGPUComputeDocker:gpu jupyter notebook --NotebookApp.password='your_password_hash' --allow-root
+```
