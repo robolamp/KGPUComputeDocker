@@ -8,7 +8,7 @@ Docker image for Deep Learning. Based on [floydhub/dl-docker](https://github.com
 * [cuDNN v6](https://developer.nvidia.com/cudnn)
 * [Tensorflow](https://www.tensorflow.org/)
 * [Keras](http://keras.io/)
-* [iPython/Jupyter Notebook](http://jupyter.org/)
+* [iPython/Jupyter Notebook](http://jupyter.org/) with Python3 kernel by default
 * [Numpy](http://www.numpy.org/)
 * [SciPy](https://www.scipy.org/) 
 * [Pandas](http://pandas.pydata.org/)
@@ -36,7 +36,7 @@ You can download the Docker image from [Docker Hub](https://hub.docker.com), or 
 You can pull an image from [Docker Hub repository](https://hub.docker.com/r/robolamp/k-gpu-compute-docker/).
 
 ```bash
-docker pull robolamp/k-gpu-compute-docker
+docker pull robolamp/k-gpu-compute-docker:gpu
 ```
 
 #### Build the Docker image locally
