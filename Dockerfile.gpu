@@ -76,36 +76,40 @@ RUN pip3 --no-cache-dir install tensorflow-gpu
 RUN pip3 --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
 
 # Install Torch
-RUN apt-get update && apt-get install -y sudo
+# RUN apt-get update && apt-get install -y sudo
+#
+# ENV TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__"
+#
+# RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
+# 	cd /root/torch && \
+# 	bash install-deps && \
+# 	./install.sh
+#
+# # Export the LUA evironment variables manually
+# ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
+# 	LUA_CPATH='/root/.luarocks/lib/lua/5.1/?.so;/root/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
+# 	PATH=/root/torch/install/bin:$PATH \
+# 	LD_LIBRARY_PATH=/root/torch/install/lib:$LD_LIBRARY_PATH \
+# 	DYLD_LIBRARY_PATH=/root/torch/install/lib:$DYLD_LIBRARY_PATH
+# ENV LUA_CPATH='/root/torch/install/lib/?.so;'$LUA_CPATH
+#
+# # Install the latest versions of nn, cutorch, cunn, cuDNN bindings and iTorch
+# RUN luarocks install nn && \
+# 	luarocks install cutorch && \
+# 	luarocks install cunn && \
+#     luarocks install loadcaffe && \
+# 	\
+# 	cd /root && git clone https://github.com/soumith/cudnn.torch.git && cd cudnn.torch && \
+# 	git checkout R4 && \
+# 	luarocks make && \
+# 	\
+# 	cd /root && git clone https://github.com/facebook/iTorch.git && \
+# 	cd iTorch && \
+# 	luarocks make
 
-ENV TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__"
-
-RUN git clone https://github.com/torch/distro.git /root/torch --recursive && \
-	cd /root/torch && \
-	bash install-deps && \
-	./install.sh
-
-# Export the LUA evironment variables manually
-ENV LUA_PATH='/root/.luarocks/share/lua/5.1/?.lua;/root/.luarocks/share/lua/5.1/?/init.lua;/root/torch/install/share/lua/5.1/?.lua;/root/torch/install/share/lua/5.1/?/init.lua;./?.lua;/root/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua' \
-	LUA_CPATH='/root/.luarocks/lib/lua/5.1/?.so;/root/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so' \
-	PATH=/root/torch/install/bin:$PATH \
-	LD_LIBRARY_PATH=/root/torch/install/lib:$LD_LIBRARY_PATH \
-	DYLD_LIBRARY_PATH=/root/torch/install/lib:$DYLD_LIBRARY_PATH
-ENV LUA_CPATH='/root/torch/install/lib/?.so;'$LUA_CPATH
-
-# Install the latest versions of nn, cutorch, cunn, cuDNN bindings and iTorch
-RUN luarocks install nn && \
-	luarocks install cutorch && \
-	luarocks install cunn && \
-    luarocks install loadcaffe && \
-	\
-	cd /root && git clone https://github.com/soumith/cudnn.torch.git && cd cudnn.torch && \
-	git checkout R4 && \
-	luarocks make && \
-	\
-	cd /root && git clone https://github.com/facebook/iTorch.git && \
-	cd iTorch && \
-	luarocks make
+# Install PyTorch
+RUN pip3 install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp35-cp35m-manylinux1_x86_64.whl
+RUN pip3 install torchvision
 
 # Install OpenCV
 RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
