@@ -14,10 +14,11 @@ Docker image for Deep Learning. Based on [floydhub/dl-docker](https://github.com
 * [Pandas](http://pandas.pydata.org/)
 * [Scikit Learn](http://scikit-learn.org/) 
 * [Matplotlib](http://matplotlib.org/)
+* [PyTorch](http://pytorch.org/)
 * [OpenCV](http://opencv.org/)
 
 TODO:
-* [Torch](http://torch.ch/) (includes nn, cutorch, cunn and cuDNN bindings)
+
 * Some Python libraries for NLP
 
 ## How-to
