@@ -113,7 +113,7 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
 				--cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" \
 				--copt=-mavx --copt=-mavx2 --copt=-mfma \
 				--copt=-mfpmath=both --copt=-msse4.2 \
-        tensorflow/tools/pip_package:build_pip_package && \
+        //tensorflow/tools/pip_package:build_pip_package && \
     rm /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
     bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/pip && \
     pip --no-cache-dir install --upgrade /tmp/pip/tensorflow-*.whl && \
