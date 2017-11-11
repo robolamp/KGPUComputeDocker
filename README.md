@@ -1,4 +1,3 @@
-cd KGPUComputeDocker
 # KGPUComputeDocker
 Docker image for Deep Learning. Based on [floydhub/dl-docker](https://github.com/floydhub/dl-docker).
 
