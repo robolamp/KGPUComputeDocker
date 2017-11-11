@@ -1,0 +1,92 @@
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+
+MAINTAINER Yulia Yakovleva <robolamp@ya.ru>
+
+ARG TENSORFLOW_ARCH=gpu
+ARG KERAS_VERSION=2.0.8
+ARG LASAGNE_VERSION=v0.1
+ARG TORCH_VERSION=latest
+
+# Install some dependencies
+RUN apt-get update && apt-get install -y \
+		bc \
+		build-essential \
+		cmake \
+		curl \
+		g++ \
+		gfortran \
+		git \
+		nano \
+		pkg-config \
+		unzip \
+		vim \
+		wget \
+		python-dev \
+		python-tk \
+		python3-dev \
+		python3-tk \
+		ant \
+		default-jdk \
+		doxygen \
+		python-pip \
+		python3-pip
+
+# Add SNI support to Python
+RUN pip3 --no-cache-dir install \
+		pyopenssl \
+		ndg-httpsclient \
+		pyasn1
+
+# Install useful Python packages using apt-get
+RUN apt-get update && apt-get install -y \
+		python3-numpy \
+		python3-scipy \
+		python3-nose \
+		python3-h5py \
+		python3-skimage \
+		python3-matplotlib \
+		python3-pandas \
+		python3-sklearn \
+		python3-sympy \
+		&& \
+	apt-get clean && \
+	apt-get autoremove && \
+	rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Install other useful Python packages using pip3
+RUN pip3 --no-cache-dir install --upgrade ipython && \
+	pip3 --no-cache-dir install \
+		Cython \
+		jupyter \
+		path.py \
+		Pillow \
+		pygments \
+		six \
+		sphinx \
+		wheel \
+		zmq
+
+# Install TensorFlow from pip
+RUN pip3 --no-cache-dir install tensorflow-gpu
+
+# Install Keras
+RUN pip3 --no-cache-dir install git+git://github.com/fchollet/keras.git@${KERAS_VERSION}
+
+# Install PyTorch
+RUN pip3 install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp35-cp35m-manylinux1_x86_64.whl
+RUN pip3 install torchvision
+
+# Install OpenCV
+RUN pip3 install opencv-python
+
+# Set up notebook config
+COPY jupyter_notebook_config.py /root/.jupyter/
+
+# Expose Ports for TensorBoard (6006), Ipython (8888)
+EXPOSE 6006 8888
+
+WORKDIR "/root"
+CMD ["/bin/bash"]
