@@ -1,3 +1,4 @@
+cd KGPUComputeDocker
 # KGPUComputeDocker
 Docker image for Deep Learning. Based on [floydhub/dl-docker](https://github.com/floydhub/dl-docker).
 
@@ -55,9 +56,17 @@ We need at least 16 GB of memory
 
 3. Build the image
 
+You can build the image which includes buidling TensorFlow and OpenCV from sources:
+
 ```bash
 docker build -t robolamp/k-gpu-compute-docker:gpu -f Dockerfile.gpu .
-```	 
+```	
+
+But it will take a lot of time. Alternatively, you can build the image which is using pre-built packages:
+
+```bash
+docker build -t robolamp/k-gpu-compute-docker:gpu -f Dockerfile.bin.gpu .
+```	
 
 ### Running the Docker image
 
