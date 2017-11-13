@@ -67,7 +67,8 @@ RUN pip3 --no-cache-dir install --upgrade ipython && \
 		six \
 		sphinx \
 		wheel \
-		zmq
+		zmq \
+		gensim
 
 # Install TensorFlow from pip
 RUN pip3 --no-cache-dir install tensorflow-gpu
