@@ -67,8 +67,7 @@ RUN pip3 --no-cache-dir install --upgrade ipython && \
 		six \
 		sphinx \
 		wheel \
-		zmq \
-		gensim
+		zmq
 
 # Install Bazel to build TensorFlow from source
 # Running bazel inside a `docker build` command causes trouble, cf:
