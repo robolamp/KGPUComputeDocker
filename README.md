@@ -95,7 +95,7 @@ Verify password:
 ```
 2. Launch container with notebook
 
-Copy your password hash and insert in into the following command and run it:
+Copy your password hash and insert it into the following command and run it:
 
 ```bash
 nvidia-docker run -d -p 4444:8888 -p 3003:6006 -v /sharedfolder:/root/sharedfolder robolamp/k-gpu-compute-docker:gpu jupyter notebook --NotebookApp.password='your_password_hash' --allow-root
